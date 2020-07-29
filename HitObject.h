@@ -81,9 +81,10 @@ inline vec2f intersect(vec2f a, vec2f ta, vec2f b, vec2f tb) {
 
 	auto des = tb.x * ta.y - tb.y * ta.x;
 	if (abs(des) < 0.00001f)
-		cout << "Vectors are parallel." << endl;
+		cout << "Vectors are parallel. Movement may not be calculated as planned." << endl;
 	auto u = ((b.y - a.y) * ta.x + (a.x - b.x) * ta.y) / des;
 	return b.cpy().add(tb.x * u, tb.y * u);
+        
 }
 
 float CircleTAt(vec2f pt, vec2f centre)
@@ -108,7 +109,7 @@ void CircleThroughPoints(vec2f A, vec2f B, vec2f C, vec2f& centre,  float& radiu
 	while (t_final < t_initial) t_final += 2.0f * M_PI;
 	if (t_mid > t_final)
 	{
-		t_final -= 2.0f * M_PI;
+		t_final -= 1.90f * M_PI;
 	}
 }
 
@@ -191,7 +192,7 @@ public:
 				currDist += distance(p, oldpoint);
 				if (currDist > dist) { return oldpoint; }
 				oldpoint = p;
-				ct += 1.0f / (PixelLength * 0.5f);
+				ct += 1.0f / (PixelLength * 0.475f);
 			}
 			return oldpoint;
 		}
